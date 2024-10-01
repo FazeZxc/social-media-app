@@ -41,7 +41,7 @@ This project is a **social media app** built with **React** that mimics Instagra
 - Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/social-media-app.git
+git clone https://github.com/FazeZxc/social-media-app.git
 cd social-media-app
 ```
 
