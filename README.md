@@ -50,14 +50,12 @@ cd social-media-app
 Using npm:
 
 ```bash
-Copy code
 npm install
 ```
 
 Or using yarn:
 
 ```bash
-Copy code
 yarn install
 ```
 
