@@ -56,7 +56,7 @@ export const SignUp = () => {
                 </FormItem>
               )}
             ></FormField>
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Next</Button>
           </form>
         </Form>
       </section>

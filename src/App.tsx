@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SignUp } from "./components/views/auth/signup";
 import { SignUpDetails } from "./components/views/auth/signup.details";
 import { SignUpPassword } from "./components/views/auth/signup.password";
+import { SignUpPage } from "./components/views/auth";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -13,7 +14,8 @@ function App() {
         {/* <ModeToggle /> */}
         {/* <SignUp /> */}
         {/* <SignUpDetails /> */}
-        <SignUpPassword />
+        {/* <SignUpPassword /> */}
+        <SignUpPage />
       </div>
     </ThemeProvider>
   );

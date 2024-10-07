@@ -87,7 +87,7 @@ export const SignUpPassword = () => {
                 </FormItem>
               )}
             ></FormField>
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Start</Button>
           </form>
         </Form>
       </section>
