@@ -11,9 +11,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { brandName } from "@/store/brand";
+import { UserAtom } from "@/store/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRecoilValue } from "recoil";
+import { FaCircleArrowLeft } from "react-icons/fa6";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { z } from "zod";
 
 const formSchema = z
@@ -52,7 +54,8 @@ const formSchema = z
     }
   });
 
-export const SignUpPassword = () => {
+export const SignUpPassword = ({ setIsPasswordEntered }) => {
+  const setUser = useSetRecoilState(UserAtom);
   const brand = useRecoilValue(brandName);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,12 +65,18 @@ export const SignUpPassword = () => {
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    setUser((prev) => {
+      return { ...prev, password: values.password };
+    });
+    setIsPasswordEntered(true);
+    // implement post request to backend to store  user details
   }
   return (
     <>
       <section>
         <header>
-          <div>{brand}</div>
+          <div>{brand.name}</div>
+          <FaCircleArrowLeft color="black" />
         </header>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

@@ -2,5 +2,8 @@ import { atom } from "recoil";
 
 export const brandName = atom({
   key: "brand",
-  default: "Instagram",
+  default: {
+    name: "Instagram",
+    title: "Happening now"
+  },
 });

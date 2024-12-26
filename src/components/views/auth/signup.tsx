@@ -10,9 +10,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { brandName } from "@/store/brand";
+import { UserAtom } from "@/store/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -21,7 +22,8 @@ const formSchema = z.object({
   }),
 });
 
-export const SignUp = () => {
+export const SignUp = ({ setIsUserNameEntered }) => {
+  const setUser = useSetRecoilState(UserAtom);
   const brand = useRecoilValue(brandName);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -29,14 +31,19 @@ export const SignUp = () => {
       username: "",
     },
   });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    setIsUserNameEntered(true);
+    setUser((prev) => {
+      return { ...prev, username: values.username };
+    });
   }
+
   return (
     <>
       <section>
         <header>
-          <div>{brand}</div>
+          <div>{brand.name}</div>
         </header>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

@@ -1,46 +1,26 @@
-import { Timeline } from "@/components/ui/timeline";
+import { useState } from "react";
 import { SignUp } from "./signup";
 import { SignUpDetails } from "./signup.details";
 import { SignUpPassword } from "./signup.password";
 
 export const SignUpPage = () => {
-  const data = [
-    {
-      title: "Username",
-      content: (
-        <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Choose a name that is unique to you.
-          </p>
-          <SignUp />
-        </div>
-      ),
-    },
-    {
-      title: "Tell us about yourself",
-      content: (
-        <div>
-          <SignUpDetails />
-        </div>
-      ),
-    },
-    {
-      title: "Password",
-      content: (
-        <div>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
-            Choose a strong password.
-          </p>
-          <div>
-            <SignUpPassword />
-          </div>
-        </div>
-      ),
-    },
-  ];
+  const [isUserNameEntered, setIsUserNameEntered] = useState(false);
+  const [isDetailsEntered, setIsDetailsEnterd] = useState(false);
+  const [isPasswordEntered, setIsPasswordEntered] = useState(false);
+
   return (
     <>
-      <Timeline data={data} />
+      <div className="h-screen flex justify-center items-center">
+        {!isUserNameEntered ? (
+          <SignUp setIsUserNameEntered={setIsUserNameEntered} />
+        ) : null}
+        {!isDetailsEntered && isUserNameEntered ? (
+          <SignUpDetails setIsDetailsEnterd={setIsDetailsEnterd} />
+        ) : null}
+        {!isPasswordEntered && isDetailsEntered && isUserNameEntered ? (
+          <SignUpPassword setIsPasswordEntered={setIsPasswordEntered} />
+        ) : null}
+      </div>
     </>
   );
 };
